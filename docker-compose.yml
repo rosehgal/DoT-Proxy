@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  proxy-service:
+    image: dns-proxy
+    build: ./
+    networks:
+      - proxy-network
+    ports:
+      - "8053:8053"
+      - "8853:8853"
+
+networks:
+  proxy-network:
