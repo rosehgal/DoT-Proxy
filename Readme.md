@@ -112,19 +112,3 @@ rsehgal.in.		20	IN	A	157.230.37.202
 7. Currently connects with Cloudflare only, but can me modified to work with any DNS-TLS providers.
 7. Server certificate verification using SSL.
 
-
-### Security consideration
-1. Imagine this proxy being deployed in an infrastructure. What would be the security concerns you would raise?
-    - The infrastructure deployment in current case is packaged with docker-swarn. The default docker-swarm deployment takes care of securing node to node communication. For load balancing, request routing etc.
-    - Loggin module is plugged in, which can help do detailed loggin with help of python's loggin module. This loggin result can be even sent to SIEM solutions like Splunk. This module is not coded yet, but the way the plugin has been written, this feature can be easily extended.
-    - Server certificate verification using CA certificates in OS.
-
-2. How would you integrate that solution in a distributed, microservices-oriented and containerized architecture?
-    - For such solutions, I prefer, docker-swarm, since the application is already packaged as container, deployment is swarm through docker-compose file make it really easy, secure and monitoring.
-    - Microservices connecting to swarm/
-
-3. What other improvements do you think would be interesting to add to the project?
-    - Logging to SIEM.
-    - Handle Zone transfer request.
-    - There is lot of biolerplate code, that can be removed. Hope fully in next REL ;)
-    - Scaleable multiprocessing instead of multithreaded, as python suffers from world famous [GIL](https://en.wikipedia.org/wiki/Global_interpreter_lock) issue.
