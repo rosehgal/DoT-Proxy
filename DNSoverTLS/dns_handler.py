@@ -24,7 +24,9 @@ class DNSHandler(socketserver.BaseRequestHandler):
         sock.settimeout(100)
 
         ctx = ssl.create_default_context()
-        ctx = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
+        ctx.options |= ssl.OP_NO_TLSv1
+        ctx.options |= ssl.OP_NO_TLSv1_1
         ctx.verify_mode = ssl.CERT_REQUIRED
         ctx.check_hostname = ctx.load_verify_locations(
             '/etc/ssl/certs/ca-certificates.crt')
@@ -60,7 +62,9 @@ class DNSTCPHandler(socketserver.BaseRequestHandler):
         sock.settimeout(100)
 
         ctx = ssl.create_default_context()
-        ctx = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
+        ctx.options |= ssl.OP_NO_TLSv1
+        ctx.options |= ssl.OP_NO_TLSv1_1
         ctx.verify_mode = ssl.CERT_REQUIRED
         ctx.check_hostname = ctx.load_verify_locations(
             '/etc/ssl/certs/ca-certificates.crt')
