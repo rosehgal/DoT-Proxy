@@ -24,7 +24,7 @@ class DNSHandler(socketserver.BaseRequestHandler):
         sock.settimeout(100)
 
         ctx = ssl.create_default_context()
-        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
         ctx.options |= ssl.OP_NO_TLSv1
         ctx.options |= ssl.OP_NO_TLSv1_1
         ctx.verify_mode = ssl.CERT_REQUIRED
@@ -62,7 +62,7 @@ class DNSTCPHandler(socketserver.BaseRequestHandler):
         sock.settimeout(100)
 
         ctx = ssl.create_default_context()
-        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
         ctx.options |= ssl.OP_NO_TLSv1
         ctx.options |= ssl.OP_NO_TLSv1_1
         ctx.verify_mode = ssl.CERT_REQUIRED
